@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_024953) do
+ActiveRecord::Schema.define(version: 2019_11_28_031624) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -77,6 +77,18 @@ ActiveRecord::Schema.define(version: 2019_11_28_024953) do
 
   create_table "shops", id: :serial, force: :cascade do |t|
     t.text "name"
+  end
+
+  create_table "student_profile_podcasts", force: :cascade do |t|
+    t.bigint "student_profiles_id"
+    t.bigint "podcasts_id"
+    t.boolean "liked", default: false
+    t.boolean "subscribed", default: false
+    t.text "comment"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["podcasts_id"], name: "index_student_profile_podcasts_on_podcasts_id"
+    t.index ["student_profiles_id"], name: "index_student_profile_podcasts_on_student_profiles_id"
   end
 
   create_table "student_profiles", force: :cascade do |t|

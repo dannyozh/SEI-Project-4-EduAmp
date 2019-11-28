@@ -1,0 +1,2 @@
+class StudentProfilePodcast < ApplicationRecord
+end
