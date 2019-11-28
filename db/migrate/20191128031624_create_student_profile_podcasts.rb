@@ -4,7 +4,6 @@ class CreateStudentProfilePodcasts < ActiveRecord::Migration[6.0]
       t.references :student_profiles
       t.references :podcasts
       t.boolean :liked, default: false
-      t.boolean :subscribed, default: false
       t.text :comment
       t.timestamps
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_28_031624) do
+ActiveRecord::Schema.define(version: 2019_11_28_094705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2019_11_28_031624) do
     t.string "length"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "educator_profile_student_profiles", force: :cascade do |t|
+    t.bigint "student_profiles_id"
+    t.bigint "educator_profiles_id"
+    t.boolean "subscribed", default: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["educator_profiles_id"], name: "index_educator_profile_student_profiles_on_educator_profiles_id"
+    t.index ["student_profiles_id"], name: "index_educator_profile_student_profiles_on_student_profiles_id"
   end
 
   create_table "educator_profiles", force: :cascade do |t|
@@ -83,7 +93,6 @@ ActiveRecord::Schema.define(version: 2019_11_28_031624) do
     t.bigint "student_profiles_id"
     t.bigint "podcasts_id"
     t.boolean "liked", default: false
-    t.boolean "subscribed", default: false
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
