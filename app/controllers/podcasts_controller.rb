@@ -10,6 +10,7 @@ class PodcastsController < ApplicationController
   # GET /podcasts/1
   # GET /podcasts/1.json
   def show
+    @podcast = Podcast.find(params[:id])
   end
 
   # GET /podcasts/new
@@ -28,7 +29,7 @@ class PodcastsController < ApplicationController
 
     respond_to do |format|
       if @podcast.save
-        format.html { redirect_to @podcast, notice: 'Podcast was successfully created.' }
+        format.html { redirect_to @podcast, notice: "Podcast was successfully created." }
         format.json { render :show, status: :created, location: @podcast }
       else
         format.html { render :new }
@@ -42,7 +43,7 @@ class PodcastsController < ApplicationController
   def update
     respond_to do |format|
       if @podcast.update(podcast_params)
-        format.html { redirect_to @podcast, notice: 'Podcast was successfully updated.' }
+        format.html { redirect_to @podcast, notice: "Podcast was successfully updated." }
         format.json { render :show, status: :ok, location: @podcast }
       else
         format.html { render :edit }
@@ -56,19 +57,20 @@ class PodcastsController < ApplicationController
   def destroy
     @podcast.destroy
     respond_to do |format|
-      format.html { redirect_to podcasts_url, notice: 'Podcast was successfully destroyed.' }
+      format.html { redirect_to podcasts_url, notice: "Podcast was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_podcast
-      @podcast = Podcast.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def podcast_params
-      params.fetch(:podcast, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_podcast
+    @podcast = Podcast.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def podcast_params
+    params.fetch(:podcast, {})
+  end
 end

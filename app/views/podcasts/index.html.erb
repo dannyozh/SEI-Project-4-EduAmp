@@ -1,5 +1,5 @@
 <p id="notice"><%= notice %></p>
-<h1>HIIII Podcasts</h1>
+<h1>Podcast Index Page</h1>
 <table>
   <thead>
     <tr>
@@ -9,14 +9,23 @@
   <tbody>
     <% @podcasts.each do |podcast| %>
       <tr>
+        <ul>
+          <li>Name: <%= podcast.name %></li>
+          <li>Duration: <%= podcast.duration %></li>
+          <li>Description: <%= podcast.description %></li>
+          <li>Description: <%= podcast.created_at %></li>
+        </ul>
+        <audio controls>
+          <source src=<%= podcast.url%>>
+        </audio>
+        <div class="container">
+          <span id="rateMe1"></span>
+        </div>
         <td><%= link_to 'Show', podcast %></td>
         <td><%= link_to 'Edit', edit_podcast_path(podcast) %></td>
         <td><%= link_to 'Destroy', podcast, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
-    <audio controls>
-      <source src="http://goldfirestudios.com/proj/howlerjs/sound.ogg">
-    </audio>
   </tbody>
 </table>
 <br>
