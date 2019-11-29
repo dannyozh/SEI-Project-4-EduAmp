@@ -92,7 +92,7 @@ ActiveRecord::Schema.define(version: 2019_11_28_094705) do
   create_table "student_profile_podcasts", force: :cascade do |t|
     t.bigint "student_profiles_id"
     t.bigint "podcasts_id"
-    t.boolean "liked", default: false
+    t.boolean "listen_again", default: false
     t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false

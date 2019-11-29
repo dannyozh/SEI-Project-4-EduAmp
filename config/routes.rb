@@ -6,5 +6,6 @@ Rails.application.routes.draw do
   devise_for :students
   get "/something/:id" => "podcasts#x"
   root "podcasts#index"
+  post "/listen_again" => "podcasts#save"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

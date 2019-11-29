@@ -19,6 +19,17 @@ class PodcastsController < ApplicationController
     render json: @podcast
   end
 
+  def save
+    p "HIIIIIIIIIIIIIIIIIIIII", params[:id].to_i
+    @podcastID = params[:id].to_i
+    @saveForLater = StudentProfilePodcast.new(:podcasts_id => @podcastID, :listen_again => true)
+    if @saveForLater.save
+      p "SAVEDDDD"
+    else
+      p "NOT SAVED :(:("
+    end
+  end
+
   # GET /podcasts/new
   def new
     @podcast = Podcast.new
