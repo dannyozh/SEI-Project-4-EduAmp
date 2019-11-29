@@ -11,6 +11,12 @@ class PodcastsController < ApplicationController
   # GET /podcasts/1.json
   def show
     @podcast = Podcast.find(params[:id])
+    # render json: @podcast
+  end
+
+  def x
+    @podcast = Podcast.find(params[:id])
+    render json: @podcast
   end
 
   # GET /podcasts/new

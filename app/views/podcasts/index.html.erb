@@ -13,14 +13,14 @@
           <li>Name: <%= podcast.name %></li>
           <li>Duration: <%= podcast.duration %></li>
           <li>Description: <%= podcast.description %></li>
-          <li>Description: <%= podcast.created_at %></li>
+          <li>Date: <%= podcast.created_at %></li>
         </ul>
         <audio controls>
           <source src=<%= podcast.url%>>
         </audio>
-        <div class="container">
-          <span id="rateMe1"></span>
-        </div>
+        <ngb-rating [(rate)]="currentRate"></ngb-rating>
+        <hr>
+        <pre>Rate: <b>{{currentRate}}</b></pre>
         <td><%= link_to 'Show', podcast %></td>
         <td><%= link_to 'Edit', edit_podcast_path(podcast) %></td>
         <td><%= link_to 'Destroy', podcast, method: :delete, data: { confirm: 'Are you sure?' } %></td>

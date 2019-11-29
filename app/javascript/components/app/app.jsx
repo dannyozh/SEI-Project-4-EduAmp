@@ -1,4 +1,5 @@
 import React from 'react';
+import Podcast from '../podcast/podcast'
 
 
 class App extends React.Component {
@@ -10,11 +11,10 @@ class App extends React.Component {
     }
 
     render() {
-
-
         return (
             <div>
                 <h1>Hi from app.jsx</h1>
+                <Podcast />
             </div>
         );
     }
