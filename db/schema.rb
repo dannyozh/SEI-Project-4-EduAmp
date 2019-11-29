@@ -68,7 +68,10 @@ ActiveRecord::Schema.define(version: 2019_11_28_094705) do
 
   create_table "podcasts", force: :cascade do |t|
     t.bigint "educator_profiles_id"
-    t.string "name"
+    t.string "podcast_title"
+    t.text "podcast_photo"
+    t.integer "season_no"
+    t.integer "episode_no"
     t.string "category"
     t.string "actual_length"
     t.string "duration"
@@ -79,12 +82,6 @@ ActiveRecord::Schema.define(version: 2019_11_28_094705) do
     t.index ["educator_profiles_id"], name: "index_podcasts_on_educator_profiles_id"
   end
 
-  create_table "ratings", force: :cascade do |t|
-    t.integer "value"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
   create_table "shops", id: :serial, force: :cascade do |t|
     t.text "name"
   end
@@ -93,7 +90,6 @@ ActiveRecord::Schema.define(version: 2019_11_28_094705) do
     t.bigint "student_profiles_id"
     t.bigint "podcasts_id"
     t.boolean "listen_again", default: false
-    t.text "comment"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["podcasts_id"], name: "index_student_profile_podcasts_on_podcasts_id"

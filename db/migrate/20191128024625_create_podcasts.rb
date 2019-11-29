@@ -2,7 +2,10 @@ class CreatePodcasts < ActiveRecord::Migration[6.0]
   def change
     create_table :podcasts do |t|
       t.references :educator_profiles
-      t.string :name
+      t.string :podcast_title
+      t.text :podcast_photo
+      t.integer :season_no
+      t.integer :episode_no
       t.string :category
       t.string :actual_length
       t.string :duration
