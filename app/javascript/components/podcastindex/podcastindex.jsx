@@ -31,8 +31,9 @@ class Podcastindex extends React.Component {
         this.state = {
             podcasts: null,
             podcastID: window.location.pathname.split('/')[2],
-            searchTerm: "",
-            durations: null
+            category: "",
+            duration: "",
+            age_group: ""
         }
     }
 
@@ -63,10 +64,19 @@ class Podcastindex extends React.Component {
             .catch(error => console.log(error))
     }
 
-    inputChangeHandler(event) {
+    inputChangeHandlerCategory(event) {
         console.log("in pinput sdadas", event.target.value)
-        this.setState({ searchTerm: event.target.value })
+        this.setState({ category: event.target.value })
+    }
 
+    inputChangeHandlerDuration(event) {
+        console.log("in pinput sdadas", event.target.value)
+        this.setState({ duration: event.target.value })
+    }
+
+    inputChangeHandlerAgeGroup(event) {
+        console.log("in pinput sdadas", event.target.value)
+        this.setState({ age_group: event.target.value })
     }
 
 
@@ -75,7 +85,7 @@ class Podcastindex extends React.Component {
             maxWidth: 345,
             height: 140
         }
-        const searchedPodcast = this.state.podcasts ? this.state.podcasts.filter(podcast => podcast.description.toLowerCase().includes(this.state.searchTerm.toLowerCase())).map(podcast => <div>
+        const searchedPodcast = this.state.podcasts ? this.state.podcasts.filter(podcast => podcast.category.toLowerCase().includes(this.state.category.toLowerCase()) && podcast.duration.toLowerCase().includes(this.state.duration.toLowerCase()) && podcast.age_group.toLowerCase().includes(this.state.age_group.toLowerCase())).map(podcast => <div>
             <Card
                 className="main-card"
             >
@@ -115,9 +125,9 @@ class Podcastindex extends React.Component {
                 < div >
                     <Container>
                         <h1>Hi from podcast INDEX.jsx</h1>
-                        <input id="search" type="text" placeholder="search by description" onChange={(event) => { this.inputChangeHandler(event) }} />
-                        <input id="search" type="text" placeholder="search by description" onChange={(event) => { this.inputChangeHandler(event) }} />
-                        <input id="search" type="text" placeholder="search by description" onChange={(event) => { this.inputChangeHandler(event) }} />
+                        <input id="search" type="text" placeholder="category e.g. History" onChange={(event) => { this.inputChangeHandlerCategory(event) }} />
+                        <input id="search" type="text" placeholder="duration e.g. Short" onChange={(event) => { this.inputChangeHandlerDuration(event) }} />
+                        <input id="search" type="text" placeholder="age e.g. Kids" onChange={(event) => { this.inputChangeHandlerAgeGroup(event) }} />
                         {searchedPodcast}
                     </Container>
                 </div >

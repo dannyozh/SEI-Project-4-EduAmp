@@ -10,55 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_11_30_102238) do
+ActiveRecord::Schema.define(version: 2019_11_28_094705) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "age_group_podcasts", force: :cascade do |t|
-    t.bigint "age_group_id"
-    t.bigint "podcasts_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["age_group_id"], name: "index_age_group_podcasts_on_age_group_id"
-    t.index ["podcasts_id"], name: "index_age_group_podcasts_on_podcasts_id"
-  end
-
-  create_table "age_groups", force: :cascade do |t|
-    t.string "age_category"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "categories", force: :cascade do |t|
-    t.string "genre"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "category_podcasts", force: :cascade do |t|
-    t.bigint "categories_id"
-    t.bigint "podcasts_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["categories_id"], name: "index_category_podcasts_on_categories_id"
-    t.index ["podcasts_id"], name: "index_category_podcasts_on_podcasts_id"
-  end
-
-  create_table "duration_podcasts", force: :cascade do |t|
-    t.bigint "durations_id"
-    t.bigint "podcasts_id"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["durations_id"], name: "index_duration_podcasts_on_durations_id"
-    t.index ["podcasts_id"], name: "index_duration_podcasts_on_podcasts_id"
-  end
-
-  create_table "durations", force: :cascade do |t|
-    t.string "length"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
 
   create_table "educator_profile_student_profiles", force: :cascade do |t|
     t.bigint "student_profiles_id"
@@ -95,6 +50,7 @@ ActiveRecord::Schema.define(version: 2019_11_30_102238) do
   create_table "podcasts", force: :cascade do |t|
     t.bigint "educator_profiles_id"
     t.string "podcast_title"
+    t.string "category"
     t.string "date"
     t.text "podcast_photo"
     t.integer "episode_no"
@@ -102,6 +58,8 @@ ActiveRecord::Schema.define(version: 2019_11_30_102238) do
     t.string "actual_length"
     t.text "url"
     t.text "description"
+    t.string "age_group"
+    t.string "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["educator_profiles_id"], name: "index_podcasts_on_educator_profiles_id"
