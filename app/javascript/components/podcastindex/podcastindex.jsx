@@ -23,7 +23,8 @@ class Podcastindex extends React.Component {
         console.log("in constructorssss");
         this.state = {
             podcasts: null,
-            podcastID: window.location.pathname.split('/')[2]
+            podcastID: window.location.pathname.split('/')[2],
+            searchTerm: ""
         }
     }
 
@@ -37,55 +38,60 @@ class Podcastindex extends React.Component {
             .catch(error => console.log(error))
     }
 
+    inputChangeHandler(event) {
+        console.log("in pinput sdadas", event.target.value)
+        this.setState({ searchTerm: event.target.value })
+
+    }
+
 
     render() {
         const classes = {
             maxWidth: 345,
             height: 140
         }
+        const searchedPodcast = this.state.podcasts ? this.state.podcasts.filter(podcast => podcast.episode_name.toLowerCase().includes(this.state.searchTerm.toLowerCase())).map(podcast => <div>
+            <Card
+                className="main-card"
+            >
+                <CardActionArea>
+                    <CardMedia
+                        component="img"
+                        alt="podcast image"
+                        image={podcast.podcast_photo}
+                        title="podcast image"
+                        height="140"
+                    />
+                    <CardContent>
+                        <Typography gutterBottom variant="h5" component="h2">
+                            {podcast.podcast_title}
+                        </Typography>
+                        <Typography variant="subtitle1" color="textPrimary" component="p">
+                            Episode {podcast.episode_no}: {podcast.episode_name}
+                        </Typography>
+                        <Typography variant="body1" color="textSecondary" component="p">
+                            Excerpt: {podcast.description}
+                        </Typography>
+                    </CardContent>
+                </CardActionArea>
+                <CardActions>
+                    <Button href={'/podcasts/' + podcast.id} size="small" color="primary">
+                        Learn More
+                    </Button>
+                </CardActions>
+            </Card>
+            <br />
+        </div>) : "";
 
         if (this.state.podcasts === null) {
             return false
         } else {
-            const allPodcasts = this.state.podcasts.map((podcast, index) => {
-                return (<div>
-                    <Card
-                        className="main-card"
-                    >
-                        <CardActionArea>
-                            <CardMedia
-                                component="img"
-                                alt="podcast image"
-                                image={podcast.podcast_photo}
-                                title="podcast image"
-                                height="140"
-                            />
-                            <CardContent>
-                                <Typography gutterBottom variant="h5" component="h2">
-                                    {podcast.podcast_title}
-                                </Typography>
-                                <Typography variant="subtitle1" color="textPrimary" component="p">
-                                    Episode {podcast.episode_no}: {podcast.episode_name}
-                                </Typography>
-                                <Typography variant="body1" color="textSecondary" component="p">
-                                    Excerpt: {podcast.description}
-                                </Typography>
-                            </CardContent>
-                        </CardActionArea>
-                        <CardActions>
-                            <Button href={'/podcasts/' + podcast.id} size="small" color="primary">
-                                Learn More
-                            </Button>
-                        </CardActions>
-                    </Card>
-                    <br />
-                </div>);
-            });
             return (
                 <div>
                     <Container>
                         <h1>Hi from podcast INDEX.jsx</h1>
-                        {allPodcasts}
+                        <input id="search" type="text" onChange={(event) => { this.inputChangeHandler(event) }} />
+                        {searchedPodcast}
                     </Container>
                 </div >
             );

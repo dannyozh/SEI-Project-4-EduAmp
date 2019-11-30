@@ -23,6 +23,7 @@ gem 'webpacker-react'
 gem 'react-rails'
 
 gem 'compass-rails'
+gem 'pg_search'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

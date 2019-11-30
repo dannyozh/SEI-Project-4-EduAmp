@@ -13,6 +13,14 @@ class PodcastsController < ApplicationController
     render json: @podcasts
   end
 
+  def searching
+    name = request.params[:name]
+    p "inside SEARCHHHHHHHHHHHHHHHHHH", name
+    # @products = Product.where(name: name)
+    @podcasts = Podcast.search_by_episode_title(name)
+    render json: @podcasts
+  end
+
   # GET /podcasts/1
   # GET /podcasts/1.json
   def show
