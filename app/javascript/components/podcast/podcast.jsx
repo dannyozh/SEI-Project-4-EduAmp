@@ -22,7 +22,8 @@ class Podcast extends React.Component {
 
     componentDidMount() {
         console.log(window.location.pathname.split('/')[2])
-        axios.get('/something/1')
+        let id = window.location.pathname.split('/')[2];
+        axios.get(`/something/${id}`)
             .then(res => {
                 const data = res.data;
                 console.log("res.date", res.data);
@@ -54,9 +55,13 @@ class Podcast extends React.Component {
                 <div>
                     <Box>
                         <h1>Hi from podcast.jsx</h1>
-                        <p>Name: {this.state.podcasts.name}</p>
+                        <img src={this.state.podcasts.podcast_photo} />
+                        <p>Title: {this.state.podcasts.podcast_title}</p>
+                        <p>Date: {this.state.podcasts.date}</p>
+                        <p>Episode No: {this.state.podcasts.episode_no}</p>
+                        <p>Episode Name: {this.state.podcasts.episode_name}</p>
                         <p>Description: {this.state.podcasts.description}</p>
-                        <p>Duration: {this.state.podcasts.duration}</p>
+                        <p>Duration: {this.state.podcasts.actual_length}</p>
                         <audio controls preload="auto" ref="audio">
                             <source className="main-audio" src={this.state.podcasts.url} type="audio/mpeg">
                             </source>;

@@ -3,13 +3,11 @@ class CreatePodcasts < ActiveRecord::Migration[6.0]
     create_table :podcasts do |t|
       t.references :educator_profiles
       t.string :podcast_title
+      t.string :date
       t.text :podcast_photo
-      t.integer :season_no
       t.integer :episode_no
-      t.string :age_group
-      t.string :category
+      t.string :episode_name
       t.string :actual_length
-      t.string :duration
       t.text :url
       t.text :description
       t.timestamps

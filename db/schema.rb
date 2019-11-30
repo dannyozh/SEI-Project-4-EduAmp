@@ -68,13 +68,11 @@ ActiveRecord::Schema.define(version: 2019_11_28_094705) do
   create_table "podcasts", force: :cascade do |t|
     t.bigint "educator_profiles_id"
     t.string "podcast_title"
+    t.string "date"
     t.text "podcast_photo"
-    t.integer "season_no"
     t.integer "episode_no"
-    t.string "age_group"
-    t.string "category"
+    t.string "episode_name"
     t.string "actual_length"
-    t.string "duration"
     t.text "url"
     t.text "description"
     t.datetime "created_at", precision: 6, null: false
