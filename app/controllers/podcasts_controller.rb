@@ -5,6 +5,12 @@ class PodcastsController < ApplicationController
   # GET /podcasts.json
   def index
     @podcasts = Podcast.all
+    # render json: @podcast
+  end
+
+  def allpodcasts
+    @podcasts = Podcast.all
+    render json: @podcasts
   end
 
   # GET /podcasts/1

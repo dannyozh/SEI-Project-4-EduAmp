@@ -7,5 +7,6 @@ Rails.application.routes.draw do
   get "/something/:id" => "podcasts#x"
   # root "podcasts#index"
   post "/listen_again" => "podcasts#save"
+  get "/allpodcasts" => "podcasts#allpodcasts"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
