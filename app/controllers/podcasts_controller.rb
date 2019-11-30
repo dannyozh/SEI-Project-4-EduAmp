@@ -8,16 +8,13 @@ class PodcastsController < ApplicationController
     # render json: @podcast
   end
 
-  def allpodcasts
-    @podcasts = Podcast.all
-    render json: @podcasts
+  def durations
+    @durations = Duration.all
+    render json: @durations
   end
 
-  def searching
-    name = request.params[:name]
-    p "inside SEARCHHHHHHHHHHHHHHHHHH", name
-    # @products = Product.where(name: name)
-    @podcasts = Podcast.search_by_episode_title(name)
+  def allpodcasts
+    @podcasts = Podcast.all
     render json: @podcasts
   end
 

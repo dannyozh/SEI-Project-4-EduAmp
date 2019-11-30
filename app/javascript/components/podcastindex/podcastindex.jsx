@@ -9,6 +9,13 @@ import CardContent from '@material-ui/core/CardContent';
 import CardMedia from '@material-ui/core/CardMedia';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
+import { makeStyles } from '@material-ui/core/styles';
+import FormLabel from '@material-ui/core/FormLabel';
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
+import Checkbox from '@material-ui/core/Checkbox';
 
 
 
@@ -24,15 +31,33 @@ class Podcastindex extends React.Component {
         this.state = {
             podcasts: null,
             podcastID: window.location.pathname.split('/')[2],
-            searchTerm: ""
+            searchTerm: "",
+            durations: null
         }
     }
 
+    // componentDidMount() {
+    //     console.log("in second comp mount")
+    //     axios.get('/alldurations')
+    //         .then(res => {
+    //             const data = res.data;
+    //             console.log("res.date", res.data);
+    //             this.setState({ durations: data });
+    //         })
+    //         .catch(error => console.log(error))
+    //     console.log("durations collected are", this.state.durations)
+    // }
+
+
     componentDidMount() {
-        axios.get('/allpodcasts')
+        console.log("in mounting")
+        let url = "/allpodcasts";
+        axios.get(url)
             .then(res => {
                 const data = res.data;
-                console.log("res.date", res.data);
+                // console.log("res.date", res.data);
+                // console.log("result1is", result1.data);
+                // console.log("result2is", result2.data);
                 this.setState({ podcasts: data });
             })
             .catch(error => console.log(error))
@@ -50,7 +75,7 @@ class Podcastindex extends React.Component {
             maxWidth: 345,
             height: 140
         }
-        const searchedPodcast = this.state.podcasts ? this.state.podcasts.filter(podcast => podcast.episode_name.toLowerCase().includes(this.state.searchTerm.toLowerCase())).map(podcast => <div>
+        const searchedPodcast = this.state.podcasts ? this.state.podcasts.filter(podcast => podcast.description.toLowerCase().includes(this.state.searchTerm.toLowerCase())).map(podcast => <div>
             <Card
                 className="main-card"
             >
@@ -87,10 +112,12 @@ class Podcastindex extends React.Component {
             return false
         } else {
             return (
-                <div>
+                < div >
                     <Container>
                         <h1>Hi from podcast INDEX.jsx</h1>
-                        <input id="search" type="text" onChange={(event) => { this.inputChangeHandler(event) }} />
+                        <input id="search" type="text" placeholder="search by description" onChange={(event) => { this.inputChangeHandler(event) }} />
+                        <input id="search" type="text" placeholder="search by description" onChange={(event) => { this.inputChangeHandler(event) }} />
+                        <input id="search" type="text" placeholder="search by description" onChange={(event) => { this.inputChangeHandler(event) }} />
                         {searchedPodcast}
                     </Container>
                 </div >
