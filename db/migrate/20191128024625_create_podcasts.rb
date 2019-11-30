@@ -6,6 +6,7 @@ class CreatePodcasts < ActiveRecord::Migration[6.0]
       t.text :podcast_photo
       t.integer :season_no
       t.integer :episode_no
+      t.string :age_group
       t.string :category
       t.string :actual_length
       t.string :duration

@@ -45,7 +45,6 @@ ActiveRecord::Schema.define(version: 2019_11_28_094705) do
 
   create_table "educator_profiles", force: :cascade do |t|
     t.string "name"
-    t.string "age_group"
     t.text "description"
     t.text "photo_url"
     t.bigint "educators_id"
@@ -72,6 +71,7 @@ ActiveRecord::Schema.define(version: 2019_11_28_094705) do
     t.text "podcast_photo"
     t.integer "season_no"
     t.integer "episode_no"
+    t.string "age_group"
     t.string "category"
     t.string "actual_length"
     t.string "duration"
@@ -80,10 +80,6 @@ ActiveRecord::Schema.define(version: 2019_11_28_094705) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["educator_profiles_id"], name: "index_podcasts_on_educator_profiles_id"
-  end
-
-  create_table "shops", id: :serial, force: :cascade do |t|
-    t.text "name"
   end
 
   create_table "student_profile_podcasts", force: :cascade do |t|
