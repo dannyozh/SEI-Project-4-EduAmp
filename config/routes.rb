@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :students
+  devise_for :students, controllers: { registrations: "students/registrations" }
   resources :podcasts
   resources :educator_profiles
   resources :student_profiles

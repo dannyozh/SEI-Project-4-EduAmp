@@ -1,6 +1,6 @@
 <p id="notice"><%= notice %></p>
 <h1>WHAT UP STUDENT</h1>
-
+<h5>Here are your podcasts to listen to</h5>
 <% @requiredPodcast.each do |podcast| %>
 <a href="/podcasts/<%=podcast.id%>"><%=podcast.podcast_title%></a>
 <p><%= podcast.episode_name%></p>
