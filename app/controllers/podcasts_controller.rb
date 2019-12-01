@@ -30,6 +30,12 @@ class PodcastsController < ApplicationController
     render json: @podcast
   end
 
+  def podcastAuthor
+    # @podcast = Podcast.find(params[:id])
+    # @author = EducatorProfile.where(:student_profiles_id => params[:id]).map { |x| x.podcasts_id }
+    # @author =
+  end
+
   def save
     p "HIIIIIIIIIIIIIIIIIIIII", params[:id].to_i
     p "current student id", current_student.id

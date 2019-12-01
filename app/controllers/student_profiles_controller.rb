@@ -15,6 +15,7 @@ class StudentProfilesController < ApplicationController
     @requiredPodcast = Podcast.where(:id => @locateinnerjoin)
     p "HIHIHI", @requiredPodcast
     # @explorers_profile = ExplorersProfile.find_by(:explorer_id => current_explorer.id)
+
   end
 
   # GET /student_profiles/new
