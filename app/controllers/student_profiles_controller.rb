@@ -1,5 +1,5 @@
 class StudentProfilesController < ApplicationController
-  before_action :set_student_profile, only: [:show, :edit, :update, :destroy]
+  # before_action :set_student_profile, only: [:show, :edit, :update, :destroy]
 
   # GET /student_profiles
   # GET /student_profiles.json
@@ -10,6 +10,11 @@ class StudentProfilesController < ApplicationController
   # GET /student_profiles/1
   # GET /student_profiles/1.json
   def show
+    @student_profile = StudentProfile.find_by(:students_id => current_student.id)
+    @locateinnerjoin = StudentProfilePodcast.where(:student_profiles_id => params[:id]).map { |x| x.podcasts_id }
+    @requiredPodcast = Podcast.where(:id => @locateinnerjoin)
+    p "HIHIHI", @requiredPodcast
+    # @explorers_profile = ExplorersProfile.find_by(:explorer_id => current_explorer.id)
   end
 
   # GET /student_profiles/new
@@ -25,10 +30,11 @@ class StudentProfilesController < ApplicationController
   # POST /student_profiles.json
   def create
     @student_profile = StudentProfile.new(student_profile_params)
+    @student_profile.students_id = current_student.id
 
     respond_to do |format|
       if @student_profile.save
-        format.html { redirect_to @student_profile, notice: 'Student profile was successfully created.' }
+        format.html { redirect_to "/podcasts", notice: "Student profile was successfully created." }
         format.json { render :show, status: :created, location: @student_profile }
       else
         format.html { render :new }
@@ -42,7 +48,7 @@ class StudentProfilesController < ApplicationController
   def update
     respond_to do |format|
       if @student_profile.update(student_profile_params)
-        format.html { redirect_to @student_profile, notice: 'Student profile was successfully updated.' }
+        format.html { redirect_to @student_profile, notice: "Student profile was successfully updated." }
         format.json { render :show, status: :ok, location: @student_profile }
       else
         format.html { render :edit }
@@ -56,19 +62,20 @@ class StudentProfilesController < ApplicationController
   def destroy
     @student_profile.destroy
     respond_to do |format|
-      format.html { redirect_to student_profiles_url, notice: 'Student profile was successfully destroyed.' }
+      format.html { redirect_to student_profiles_url, notice: "Student profile was successfully destroyed." }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_student_profile
-      @student_profile = StudentProfile.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def student_profile_params
-      params.fetch(:student_profile, {})
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_student_profile
+    @student_profile = StudentProfile.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def student_profile_params
+    params.require(:student_profiles).permit(:name, :age_group)
+  end
 end

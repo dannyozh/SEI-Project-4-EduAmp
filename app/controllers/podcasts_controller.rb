@@ -32,9 +32,11 @@ class PodcastsController < ApplicationController
 
   def save
     p "HIIIIIIIIIIIIIIIIIIIII", params[:id].to_i
+    p "current student id", current_student.id
     @podcastID = params[:id].to_i
-    @saveForLater = StudentProfilePodcast.new(:podcasts_id => @podcastID, :listen_again => true)
-    if @saveForLater.save
+    @studentid = current_student.id
+    @saveForLater = StudentProfilePodcast.new(:podcasts_id => @podcastID, :student_profiles_id => @studentid, :listen_again => true)
+    if @saveForLater.save!
       p "SAVEDDDD"
     else
       p "NOT SAVED :(:("

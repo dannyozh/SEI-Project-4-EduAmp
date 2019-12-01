@@ -1,4 +1,10 @@
 <p id="notice"><%= notice %></p>
+<h1>WHAT UP STUDENT</h1>
 
+<% @requiredPodcast.each do |podcast| %>
+<a href="/podcasts/<%=podcast.id%>"><%=podcast.podcast_title%></a>
+<p><%= podcast.episode_name%></p>
+
+<%end%>
 <%= link_to 'Edit', edit_student_profile_path(@student_profile) %> |
 <%= link_to 'Back', student_profiles_path %>

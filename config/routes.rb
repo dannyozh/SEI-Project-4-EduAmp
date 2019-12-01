@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
+  devise_for :students
   resources :podcasts
   resources :educator_profiles
   resources :student_profiles
   devise_for :educators
-  devise_for :students
   get "/something/:id" => "podcasts#x"
   # root "podcasts#index"
   post "/listen_again" => "podcasts#save"
