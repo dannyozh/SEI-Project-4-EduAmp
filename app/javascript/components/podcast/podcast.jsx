@@ -36,7 +36,7 @@ class Podcast extends React.Component {
 
     savePodcast() {
         console.log('savingg')
-        axios.post('/listen_again', {
+        axios.post('/listenagain', {
             id: this.state.podcastID
         })
             .then(function (response) {

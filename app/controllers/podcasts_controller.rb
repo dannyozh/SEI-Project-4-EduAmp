@@ -69,13 +69,15 @@ class PodcastsController < ApplicationController
   end
 
   def destroyentry
+    @student_profile = StudentProfile.find_by(:students_id => current_student.id)
     @podcast = Podcast.find(params[:pid])
     p "podcast id isss", @podcast.id
     @studentID = current_student.id
     p "student id isss", @studentID
     @selectedentry = StudentProfilePodcast.find_by(:student_profiles_id => @studentID, :podcasts_id => @podcast.id)
-    p "CORECT ID IS", id
-    @selectedentry.destroy
+    if @selectedentry.destroy
+      redirect_to @student_profile
+    end
   end
 
   # PATCH/PUT /podcasts/1
