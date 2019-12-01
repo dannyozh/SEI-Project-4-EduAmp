@@ -35,7 +35,7 @@ class PodcastsController < ApplicationController
     p "current student id", current_student.id
     @podcastID = params[:id].to_i
     @studentid = current_student.id
-    @saveForLater = StudentProfilePodcast.new(:podcasts_id => @podcastID, :student_profiles_id => @studentid, :listen_again => true)
+    @saveForLater = StudentProfilePodcast.new(:podcasts_id => @podcastID, :student_profiles_id => @studentid)
     if @saveForLater.save!
       p "SAVEDDDD"
     else
@@ -66,6 +66,16 @@ class PodcastsController < ApplicationController
         format.json { render json: @podcast.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def destroyentry
+    @podcast = Podcast.find(params[:pid])
+    p "podcast id isss", @podcast.id
+    @studentID = current_student.id
+    p "student id isss", @studentID
+    @selectedentry = StudentProfilePodcast.find_by(:student_profiles_id => @studentID, :podcasts_id => @podcast.id)
+    p "CORECT ID IS", id
+    @selectedentry.destroy
   end
 
   # PATCH/PUT /podcasts/1

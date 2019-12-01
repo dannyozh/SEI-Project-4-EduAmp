@@ -18,7 +18,6 @@ ActiveRecord::Schema.define(version: 2019_12_01_093057) do
   create_table "educator_profile_student_profiles", force: :cascade do |t|
     t.bigint "student_profiles_id"
     t.bigint "educator_profiles_id"
-    t.boolean "subscribed", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["educator_profiles_id"], name: "index_educator_profile_student_profiles_on_educator_profiles_id"
@@ -72,7 +71,6 @@ ActiveRecord::Schema.define(version: 2019_12_01_093057) do
   create_table "student_profile_podcasts", force: :cascade do |t|
     t.bigint "student_profiles_id"
     t.bigint "podcasts_id"
-    t.boolean "listen_again", default: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["podcasts_id"], name: "index_student_profile_podcasts_on_podcasts_id"

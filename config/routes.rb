@@ -5,8 +5,9 @@ Rails.application.routes.draw do
   resources :student_profiles
   devise_for :educators
   get "/something/:id" => "podcasts#x"
+  delete "/deleteentry/:pid" => "podcasts#destroyentry"
   # root "podcasts#index"
-  post "/listen_again" => "podcasts#save"
+  post "/listenagain" => "podcasts#save"
   get "/allpodcasts" => "podcasts#allpodcasts"
   get "/alldurations" => "podcasts#durations"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html

@@ -4,7 +4,5 @@
 <% @requiredPodcast.each do |podcast| %>
 <a href="/podcasts/<%=podcast.id%>"><%=podcast.podcast_title%></a>
 <p><%= podcast.episode_name%></p>
-
+<a href="/deleteentry/<%=podcast.id%>" data-method="delete">Delete entry</a>
 <%end%>
-<%= link_to 'Edit', edit_student_profile_path(@student_profile) %> |
-<%= link_to 'Back', student_profiles_path %>
