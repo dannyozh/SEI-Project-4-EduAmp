@@ -10,8 +10,8 @@ class StudentProfilesController < ApplicationController
   # GET /student_profiles/1
   # GET /student_profiles/1.json
   def show
-    @student_profile = StudentProfile.find_by(:students_id => current_student.id)
-    @locateinnerjoin = StudentProfilePodcast.where(:student_profiles_id => params[:id]).map { |x| x.podcasts_id }
+    @student_profile = StudentProfile.find_by(:student_id => current_student.id)
+    @locateinnerjoin = StudentProfilePodcast.where(:student_profile_id => params[:id]).map { |x| x.podcast_id }
     @requiredPodcast = Podcast.where(:id => @locateinnerjoin)
     p "HIHIHI", @requiredPodcast
     # @explorers_profile = ExplorersProfile.find_by(:explorer_id => current_explorer.id)
@@ -31,7 +31,7 @@ class StudentProfilesController < ApplicationController
   # POST /student_profiles.json
   def create
     @student_profile = StudentProfile.new(student_profile_params)
-    @student_profile.students_id = current_student.id
+    @student_profile.student_id = current_student.id
 
     respond_to do |format|
       if @student_profile.save

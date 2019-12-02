@@ -1,3 +1,3 @@
 class EducatorProfile < ApplicationRecord
-  has_many :podcasts
+  has_many :podcast
 end

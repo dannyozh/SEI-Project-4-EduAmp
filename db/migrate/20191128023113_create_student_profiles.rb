@@ -3,7 +3,7 @@ class CreateStudentProfiles < ActiveRecord::Migration[6.0]
     create_table :student_profiles do |t|
       t.string :name
       t.string :age_group
-      t.references :students
+      t.references :student
       t.timestamps
     end
   end

@@ -41,7 +41,7 @@ class PodcastsController < ApplicationController
     p "current student id", current_student.id
     @podcastID = params[:id].to_i
     @studentid = current_student.id
-    @saveForLater = StudentProfilePodcast.new(:podcasts_id => @podcastID, :student_profiles_id => @studentid)
+    @saveForLater = StudentProfilePodcast.new(:podcast_id => @podcastID, :student_profile_id => @studentid)
     if @saveForLater.save!
       p "SAVEDDDD"
     else

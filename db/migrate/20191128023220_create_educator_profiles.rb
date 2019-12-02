@@ -4,7 +4,7 @@ class CreateEducatorProfiles < ActiveRecord::Migration[6.0]
       t.string :name
       t.text :description
       t.text :photo_url
-      t.references :educators
+      t.references :educator
       t.timestamps
     end
   end

@@ -16,22 +16,22 @@ ActiveRecord::Schema.define(version: 2019_12_01_093057) do
   enable_extension "plpgsql"
 
   create_table "educator_profile_student_profiles", force: :cascade do |t|
-    t.bigint "student_profiles_id"
-    t.bigint "educator_profiles_id"
+    t.bigint "student_profile_id"
+    t.bigint "educator_profile_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["educator_profiles_id"], name: "index_educator_profile_student_profiles_on_educator_profiles_id"
-    t.index ["student_profiles_id"], name: "index_educator_profile_student_profiles_on_student_profiles_id"
+    t.index ["educator_profile_id"], name: "index_educator_profile_student_profiles_on_educator_profile_id"
+    t.index ["student_profile_id"], name: "index_educator_profile_student_profiles_on_student_profile_id"
   end
 
   create_table "educator_profiles", force: :cascade do |t|
     t.string "name"
     t.text "description"
     t.text "photo_url"
-    t.bigint "educators_id"
+    t.bigint "educator_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["educators_id"], name: "index_educator_profiles_on_educators_id"
+    t.index ["educator_id"], name: "index_educator_profiles_on_educator_id"
   end
 
   create_table "educators", force: :cascade do |t|
@@ -47,7 +47,7 @@ ActiveRecord::Schema.define(version: 2019_12_01_093057) do
   end
 
   create_table "podcasts", force: :cascade do |t|
-    t.bigint "educator_profiles_id"
+    t.bigint "educator_profile_id"
     t.string "podcast_title"
     t.string "category"
     t.string "date"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2019_12_01_093057) do
     t.string "duration"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["educator_profiles_id"], name: "index_podcasts_on_educator_profiles_id"
+    t.index ["educator_profile_id"], name: "index_podcasts_on_educator_profile_id"
   end
 
   create_table "shops", id: :serial, force: :cascade do |t|
@@ -69,21 +69,21 @@ ActiveRecord::Schema.define(version: 2019_12_01_093057) do
   end
 
   create_table "student_profile_podcasts", force: :cascade do |t|
-    t.bigint "student_profiles_id"
-    t.bigint "podcasts_id"
+    t.bigint "student_profile_id"
+    t.bigint "podcast_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["podcasts_id"], name: "index_student_profile_podcasts_on_podcasts_id"
-    t.index ["student_profiles_id"], name: "index_student_profile_podcasts_on_student_profiles_id"
+    t.index ["podcast_id"], name: "index_student_profile_podcasts_on_podcast_id"
+    t.index ["student_profile_id"], name: "index_student_profile_podcasts_on_student_profile_id"
   end
 
   create_table "student_profiles", force: :cascade do |t|
     t.string "name"
     t.string "age_group"
-    t.bigint "students_id"
+    t.bigint "student_id"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["students_id"], name: "index_student_profiles_on_students_id"
+    t.index ["student_id"], name: "index_student_profiles_on_student_id"
   end
 
   create_table "students", force: :cascade do |t|

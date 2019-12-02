@@ -1,7 +1,7 @@
 class CreatePodcasts < ActiveRecord::Migration[6.0]
   def change
     create_table :podcasts do |t|
-      t.references :educator_profiles
+      t.references :educator_profile
       t.string :podcast_title
       t.string :category
       t.string :date
