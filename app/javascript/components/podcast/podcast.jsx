@@ -17,7 +17,8 @@ class Podcast extends React.Component {
         this.state = {
             podcasts: null,
             podcastID: window.location.pathname.split('/')[2],
-            author: null
+            author: null,
+            authorid: null
         }
     }
 
@@ -28,10 +29,11 @@ class Podcast extends React.Component {
             axios.get(`/something/${id}`),
             axios.get(`/podcastauthor/${id}`)
         ]).then(([result1, result2]) => {
-            console.log(result1.data)
-            console.log(result2.data)
+            // console.log(result1.data)
+            // console.log(result2.data[0].id)
             this.setState({ podcasts: result1.data });
             this.setState({ author: result2.data });
+            this.setState({ authorid: result2.data[0].id })
             // console.log("podcast", this.state.podcasts);
             // console.log("author", this.state.author);
         })
@@ -43,6 +45,19 @@ class Podcast extends React.Component {
         console.log('savingg')
         axios.post('/listenagain', {
             id: this.state.podcastID
+        })
+            .then(function (response) {
+                console.log(response);
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+    }
+
+    saveAuthor() {
+        console.log('saving author')
+        axios.post('/subscribe', {
+            id: this.state.authorid
         })
             .then(function (response) {
                 console.log(response);
@@ -84,7 +99,7 @@ class Podcast extends React.Component {
                             </source>;
                     </audio>
                         <hr />
-                        <Button
+                        <Button onClick={() => { this.saveAuthor() }}
                             variant="contained"
                             color="primary"
                             size="small"

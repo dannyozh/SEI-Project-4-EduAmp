@@ -50,6 +50,18 @@ class PodcastsController < ApplicationController
     end
   end
 
+  def subscribe
+    p "HIIIIIIIIIIIIIIIIIIIII", params[:id].to_i
+    @authorID = params[:id].to_i
+    @studentid = current_student.id
+    @subscribe = EducatorProfileStudentProfile.new(:educator_profile_id => @authorID, :student_profile_id => @studentid)
+    if @subscribe.save!
+      p "SAVEDDDD"
+    else
+      p "NOT SAVED :(:("
+    end
+  end
+
   # GET /podcasts/new
   def new
     @podcast = Podcast.new
@@ -81,7 +93,17 @@ class PodcastsController < ApplicationController
     p "podcast id isss", @podcast.id
     @studentID = current_student.id
     p "student id isss", @studentID
-    @selectedentry = StudentProfilePodcast.find_by(:student_profiles_id => @studentID, :podcasts_id => @podcast.id)
+    @selectedentry = StudentProfilePodcast.find_by(:student_profile_id => @studentID, :podcast_id => @podcast.id)
+    if @selectedentry.destroy
+      redirect_to @student_profile
+    end
+  end
+
+  def destroysubscribe
+    @student_profile = StudentProfile.find_by(:student_id => current_student.id)
+    @educator = EducatorProfile.find(params[:eid])
+    @studentID = current_student.id
+    @selectedentry = EducatorProfileStudentProfile.find_by(:student_profile_id => @studentID, :educator_profile_id => @educator.id)
     if @selectedentry.destroy
       redirect_to @student_profile
     end

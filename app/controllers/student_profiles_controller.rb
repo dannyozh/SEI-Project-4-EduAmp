@@ -15,6 +15,11 @@ class StudentProfilesController < ApplicationController
     @requiredPodcast = Podcast.where(:id => @locateinnerjoin)
     p "HIHIHI", @requiredPodcast
 
+    @locatejoineducator = EducatorProfileStudentProfile.where(:student_profile_id => params[:id]).map { |x| x.educator_profile_id }
+    @requiredAuthor = EducatorProfile.where(:id => @locatejoineducator)
+
+    p "AUHTOOHOTH", @requiredAuthor
+
     # @podcast = Podcast.find(params[:id])
     # @author = EducatorProfile.where(:id => @podcast.educator_profile_id)
     # p "AUTHOR IS", @author

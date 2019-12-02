@@ -5,8 +5,10 @@ Rails.application.routes.draw do
   resources :student_profiles
   devise_for :educators
   post "/listenagain" => "podcasts#save"
+  post "/subscribe" => "podcasts#subscribe"
   get "/something/:id" => "podcasts#x"
   delete "/deleteentry/:pid" => "podcasts#destroyentry"
+  delete "/deletesubscribe/:eid" => "podcasts#destroysubscribe"
   # root "podcasts#index"
   get "/allpodcasts" => "podcasts#allpodcasts"
   get "/podcastauthor/:id" => "podcasts#podcastauthor"
