@@ -16,20 +16,25 @@ class Podcast extends React.Component {
         console.log("in constructor");
         this.state = {
             podcasts: null,
-            podcastID: window.location.pathname.split('/')[2]
+            podcastID: window.location.pathname.split('/')[2],
+            author: null
         }
     }
 
     componentDidMount() {
-        console.log(window.location.pathname.split('/')[2])
+        // console.log(window.location.pathname.split('/')[2])
         let id = window.location.pathname.split('/')[2];
-        axios.get(`/something/${id}`)
-            .then(res => {
-                const data = res.data;
-                console.log("res.date", res.data);
-                this.setState({ podcasts: data });
-
-            })
+        Promise.all([
+            axios.get(`/something/${id}`),
+            axios.get(`/podcastauthor/${id}`)
+        ]).then(([result1, result2]) => {
+            console.log(result1.data)
+            console.log(result2.data)
+            this.setState({ podcasts: result1.data });
+            this.setState({ author: result2.data });
+            // console.log("podcast", this.state.podcasts);
+            // console.log("author", this.state.author);
+        })
             .catch(error => console.log(error))
     }
 
@@ -49,13 +54,24 @@ class Podcast extends React.Component {
 
 
     render() {
-        if (this.state.podcasts === null) {
+        if (this.state.podcasts === null || this.state.author === null) {
             return false
         } else {
+            const podcastAuthor = this.state.author.map((author, index) => {
+                return (<div>
+                    <Box>
+                        <p>By: {author.name}</p>
+                        <img src={author.photo_url} />
+                        <p>Bio: {author.description}</p>
+
+                    </Box>
+                </div>);
+            });
             return (
                 <div>
                     <Box>
                         <h1>Hi from podcast.jsx</h1>
+                        {podcastAuthor}
                         <img src={this.state.podcasts.podcast_photo} />
                         <p>Title: {this.state.podcasts.podcast_title}</p>
                         <p>Date: {this.state.podcasts.date}</p>
@@ -87,7 +103,7 @@ class Podcast extends React.Component {
                         >
                             Save
                         </Button>
-                        
+
                     </Box>
                 </div >
             );

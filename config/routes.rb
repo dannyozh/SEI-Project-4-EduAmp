@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   delete "/deleteentry/:pid" => "podcasts#destroyentry"
   # root "podcasts#index"
   get "/allpodcasts" => "podcasts#allpodcasts"
+  get "/podcastauthor/:id" => "podcasts#podcastauthor"
   get "/alldurations" => "podcasts#durations"
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
