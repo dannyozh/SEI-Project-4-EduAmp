@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   resources :educator_profiles
   resources :student_profiles
   devise_for :educators
+  root "landings#landing"
   post "/listenagain" => "podcasts#save"
   post "/subscribe" => "podcasts#subscribe"
   get "/something/:id" => "podcasts#x"

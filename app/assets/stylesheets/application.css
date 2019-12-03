@@ -14,3 +14,8 @@
  *= require_self
  */
 
+ body {
+     background-color: #2d2f45;
+     color: white;
+     font-family: "Karla";
+ }
