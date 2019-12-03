@@ -6,7 +6,9 @@ class PodcastsController < ApplicationController
   def index
     @podcasts = Podcast.all
     # render json: @podcast
-    @student_profile = StudentProfile.find_by(:student_id => current_student.id)
+    if current_student
+      @student_profile = StudentProfile.find_by(:student_id => current_student.id)
+    end
   end
 
   def durations
@@ -24,6 +26,9 @@ class PodcastsController < ApplicationController
   def show
     @podcast = Podcast.find(params[:id])
     # render json: @podcast
+    if current_student
+      @student_profile = StudentProfile.find_by(:student_id => current_student.id)
+    end
   end
 
   def x

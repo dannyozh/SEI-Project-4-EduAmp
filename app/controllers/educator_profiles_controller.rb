@@ -13,7 +13,9 @@ class EducatorProfilesController < ApplicationController
     @educator_profile = EducatorProfile.find_by(:id => params[:id])
     @educatorpodcast = Podcast.where(:educator_profile_id => @educator_profile.id)
     # @requiredPodcast = Podcast.where(:id => @educatorpodcast)
-    p "educator's podcasts are", @educatorpodcast
+    if current_student
+      @student_profile = StudentProfile.find_by(:student_id => current_student.id)
+    end
   end
 
   # GET /educator_profiles/new
