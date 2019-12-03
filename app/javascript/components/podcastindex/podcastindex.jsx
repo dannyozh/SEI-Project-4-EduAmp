@@ -2,20 +2,11 @@ import React from 'react';
 import axios from 'axios';
 import ReactDOM from 'react-dom';
 import Container from '@material-ui/core/Container';
-import Card from '@material-ui/core/Card';
-import CardActionArea from '@material-ui/core/CardActionArea';
-import CardActions from '@material-ui/core/CardActions';
-import CardContent from '@material-ui/core/CardContent';
-import CardMedia from '@material-ui/core/CardMedia';
-import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
-import FormLabel from '@material-ui/core/FormLabel';
-import FormControl from '@material-ui/core/FormControl';
-import FormGroup from '@material-ui/core/FormGroup';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
-import FormHelperText from '@material-ui/core/FormHelperText';
-import Checkbox from '@material-ui/core/Checkbox';
+import MediaCard from "../card/card"
+import Grid from '@material-ui/core/Grid';
+
 
 
 
@@ -86,35 +77,13 @@ class Podcastindex extends React.Component {
             height: 140
         }
         const searchedPodcast = this.state.podcasts ? this.state.podcasts.filter(podcast => podcast.category.toLowerCase().includes(this.state.category.toLowerCase()) && podcast.duration.toLowerCase().includes(this.state.duration.toLowerCase()) && podcast.age_group.toLowerCase().includes(this.state.age_group.toLowerCase())).map(podcast => <div>
-            <Card
-                className="main-card"
-            >
-                <CardActionArea>
-                    <CardMedia
-                        component="img"
-                        alt="podcast image"
-                        image={podcast.podcast_photo}
-                        title="podcast image"
-                        height="140"
-                    />
-                    <CardContent>
-                        <Typography gutterBottom variant="h5" component="h2">
-                            {podcast.podcast_title}
-                        </Typography>
-                        <Typography variant="subtitle1" color="textPrimary" component="p">
-                            Episode {podcast.episode_no}: {podcast.episode_name}
-                        </Typography>
-                        <Typography variant="body1" color="textSecondary" component="p">
-                            Excerpt: {podcast.description}
-                        </Typography>
-                    </CardContent>
-                </CardActionArea>
-                <CardActions>
-                    <Button href={'/podcasts/' + podcast.id} size="small" color="primary">
-                        Learn More
-                    </Button>
-                </CardActions>
-            </Card>
+            <MediaCard
+                title={podcast.podcast_title}
+                description={podcast.description}
+                photo={podcast.podcast_photo}
+                url={'/podcasts/' + podcast.id}
+            />
+
             <br />
         </div>) : "";
 
@@ -128,7 +97,10 @@ class Podcastindex extends React.Component {
                         <input id="search" type="text" placeholder="category e.g. History" onChange={(event) => { this.inputChangeHandlerCategory(event) }} />
                         <input id="search" type="text" placeholder="duration e.g. Short" onChange={(event) => { this.inputChangeHandlerDuration(event) }} />
                         <input id="search" type="text" placeholder="age e.g. Kids" onChange={(event) => { this.inputChangeHandlerAgeGroup(event) }} />
-                        {searchedPodcast}
+                        <hr />
+                        <Grid container item xs={12} spacing={3}>
+                            {searchedPodcast}
+                        </Grid>
                     </Container>
                 </div >
             );

@@ -1,4 +1,7 @@
 <p id="notice"><%= notice %></p>
-
-<%= link_to 'Edit', edit_educator_profile_path(@educator_profile) %> |
-<%= link_to 'Back', educator_profiles_path %>
+<h1>Educator Profile page</h2>
+<% @educatorpodcast.each do |podcast|%>
+  <p><%= podcast.podcast_title%></p>
+  <img src=<%= podcast.podcast_photo%>/>
+  <p><%= podcast.description%></p>
+<%end%>

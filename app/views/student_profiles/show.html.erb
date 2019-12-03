@@ -1,17 +1,25 @@
 <p id="notice"><%= notice %></p>
-<h1>WHAT UP STUDENT</h1>
+<h1>WHAT UP <%= @student_profile.name%></h1>
 <h5>Here are your podcasts to listen to</h5>
 <% @requiredPodcast.each do |podcast| %>
-  <a href="/podcasts/<%=podcast.id%>"><%=podcast.podcast_title%></a>
-<p><%= podcast.episode_name%></p>
-<a href="/deleteentry/<%=podcast.id%>" data-method="delete">Delete entry</a>
+  <div class="container">
+    <img src="<%= podcast.podcast_photo%>"/>
+    <br/>
+    <a href="/podcasts/<%=podcast.id%>"><%=podcast.podcast_title%></a>
+    <p><%= podcast.episode_name%></p>
+    <a href="/deleteentry/<%=podcast.id%>" data-method="delete">Delete entry</a>
+    </div>
 <%end%>
+
 <hr/>
-  <h5>Here are the people you are subscribed to</h5>
-  <% @requiredAuthor.each do |author|%>
-    <p>Name: <%= author.name%></p>
-    <img src=<%= author.photo_url%>/>
-    <p>Description: <%= author.description%></p>
-    <p><%= author.id%></p>
-    <a href="/deletesubscribe/<%=author.id%>" data-method="delete">Delete subscribe</a>
-  <%end%>
+    <h5>Here are the people you are subscribed to</h5>
+    <% @requiredAuthor.each do |author|%>
+      <div class="container">
+        <img src="<%= author.photo_url%>"/>
+        <br/>
+        <a href="/educator_profiles/<%=author.id%>"><%=author.name%></a>
+        <p>Description: <%= author.description%></p>
+        <p><%= author.id%></p>
+        <a href="/deletesubscribe/<%=author.id%>" data-method="delete">Delete subscribe</a>
+      </div>
+    <%end%>

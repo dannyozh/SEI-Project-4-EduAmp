@@ -7,6 +7,7 @@ import Icon from '@material-ui/core/Icon';
 import SaveIcon from '@material-ui/icons/Save';
 import Box from '@material-ui/core/Box';
 import ReactDOMServer from 'react-dom/server';
+import ImageAvatars from '../avatar/avatar';
 
 const csrfToken = document.querySelector('[name=csrf-token]').content
 axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
@@ -75,8 +76,8 @@ class Podcast extends React.Component {
             const podcastAuthor = this.state.author.map((author, index) => {
                 return (<div>
                     <Box>
+                        <ImageAvatars photo={author.photo_url} />
                         <p>By: {author.name}</p>
-                        <img src={author.photo_url} />
                         <p>Bio: {author.description}</p>
 
                     </Box>

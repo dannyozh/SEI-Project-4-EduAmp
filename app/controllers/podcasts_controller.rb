@@ -88,7 +88,7 @@ class PodcastsController < ApplicationController
   end
 
   def destroyentry
-    @student_profile = StudentProfile.find_by(:students_id => current_student.id)
+    @student_profile = StudentProfile.find_by(:student_id => current_student.id)
     @podcast = Podcast.find(params[:pid])
     p "podcast id isss", @podcast.id
     @studentID = current_student.id
@@ -96,6 +96,7 @@ class PodcastsController < ApplicationController
     @selectedentry = StudentProfilePodcast.find_by(:student_profile_id => @studentID, :podcast_id => @podcast.id)
     if @selectedentry.destroy
       redirect_to @student_profile
+      p "DESTROYEEDEDE"
     end
   end
 
