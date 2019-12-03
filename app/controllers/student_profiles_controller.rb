@@ -11,6 +11,7 @@ class StudentProfilesController < ApplicationController
   # GET /student_profiles/1.json
   def show
     @student_profile = StudentProfile.find_by(:student_id => current_student.id)
+    p "dadadada", @current_student.id
     @locateinnerjoin = StudentProfilePodcast.where(:student_profile_id => params[:id]).map { |x| x.podcast_id }
     @requiredPodcast = Podcast.where(:id => @locateinnerjoin)
     p "HIHIHI", @requiredPodcast
@@ -18,7 +19,7 @@ class StudentProfilesController < ApplicationController
     @locatejoineducator = EducatorProfileStudentProfile.where(:student_profile_id => params[:id]).map { |x| x.educator_profile_id }
     @requiredAuthor = EducatorProfile.where(:id => @locatejoineducator)
 
-    p "AUHTOOHOTH", @requiredAuthor
+    # p "AUHTOOHOTH", @requiredAuthor
 
     # @podcast = Podcast.find(params[:id])
     # @author = EducatorProfile.where(:id => @podcast.educator_profile_id)
@@ -44,7 +45,7 @@ class StudentProfilesController < ApplicationController
 
     respond_to do |format|
       if @student_profile.save
-        format.html { redirect_to "/podcasts", notice: "Student profile was successfully created." }
+        format.html { redirect_to "/podcasts" }
         format.json { render :show, status: :created, location: @student_profile }
       else
         format.html { render :new }

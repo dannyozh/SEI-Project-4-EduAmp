@@ -10,6 +10,21 @@
     <%= javascript_pack_tag 'application' %>
   </head>
   <body>
+    <% if current_student %>
+      <nav class="navbar navbar-expand-lg navbar-white border-bottom">
+        <a id= "branding" class="navbar-brand  blue-text" href="/"></a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="container">
+          <div class="row navbar-nav">
+            <a class="nav-item nav-link" href="/podcasts">All Podcasts</a>
+            <a class="nav-item nav-link purple-text nav-profile active" href="<%= student_profile_path(@student_profile)%>"><%= @student_profile.name%></a>
+            <a class="nav-item  nav-link"><%= link_to 'Sign out', destroy_student_session_path, method: :delete, class: "sign-out" %></a>
+          </div>
+        </div>
+      </nav>
+    <%end%>
     <%= yield %>
   </body>
 </html>
