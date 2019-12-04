@@ -30,7 +30,7 @@ class StudentProfilesController < ApplicationController
 
   # GET /student_profiles/new
   def new
-    @student_profile = StudentProfile.new
+    @student_profile = Student.find_by(:id => current_student.id)
   end
 
   # GET /student_profiles/1/edit
