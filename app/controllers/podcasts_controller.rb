@@ -17,7 +17,7 @@ class PodcastsController < ApplicationController
   end
 
   def allpodcasts
-    @podcasts = Podcast.all
+    @podcasts = Podcast.all.order("RANDOM()")
     render json: @podcasts
   end
 
