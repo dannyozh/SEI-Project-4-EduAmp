@@ -21,6 +21,8 @@ const useStyles = makeStyles({
 export default function MediaCard(props) {
     const classes = useStyles();
 
+    let description = props.description.substring(0, 100);
+    let trimmedDescription = description.substring(0, Math.min(description.length, description.lastIndexOf(" ")))
     return (
         <Card className={classes.card}>
             <CardActionArea>
@@ -34,15 +36,13 @@ export default function MediaCard(props) {
                         {props.title}
                     </Typography>
                     <Typography variant="body2" color="textSecondary" component="p">
-                        {props.description}
+                        {trimmedDescription} ...
                     </Typography>
                 </CardContent>
             </CardActionArea>
             <CardActions>
-                <Button size="small" color="primary">
-                    Share
-        </Button>
-                <Button size="small" color="primary" href={props.url}>
+
+                <Button size="large" color="primary" href={props.url}>
                     Learn More
         </Button>
             </CardActions>

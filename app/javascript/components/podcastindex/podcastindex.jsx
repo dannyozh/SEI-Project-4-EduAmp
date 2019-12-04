@@ -6,6 +6,8 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import MediaCard from "../card/card"
 import Grid from '@material-ui/core/Grid';
+import RecipeReviewCard from "../complexcard/complexcard";
+import Paper from '@material-ui/core/Paper';
 
 
 
@@ -39,6 +41,7 @@ class Podcastindex extends React.Component {
     //         .catch(error => console.log(error))
     //     console.log("durations collected are", this.state.durations)
     // }
+
 
 
     componentDidMount() {
@@ -76,16 +79,30 @@ class Podcastindex extends React.Component {
             maxWidth: 345,
             height: 140
         }
-        const searchedPodcast = this.state.podcasts ? this.state.podcasts.filter(podcast => podcast.category.toLowerCase().includes(this.state.category.toLowerCase()) && podcast.duration.toLowerCase().includes(this.state.duration.toLowerCase()) && podcast.age_group.toLowerCase().includes(this.state.age_group.toLowerCase())).map(podcast => <div>
-            <MediaCard
-                title={podcast.podcast_title}
-                description={podcast.description}
-                photo={podcast.podcast_photo}
-                url={'/podcasts/' + podcast.id}
-            />
 
+
+
+        const searchedPodcast = this.state.podcasts ? this.state.podcasts.filter(podcast => podcast.category.toLowerCase().includes(this.state.category.toLowerCase()) && podcast.duration.toLowerCase().includes(this.state.duration.toLowerCase()) && podcast.age_group.toLowerCase().includes(this.state.age_group.toLowerCase())).map(podcast => <div>
+            <Grid item xs={11} >
+                <MediaCard
+                    title={podcast.podcast_title}
+                    description={podcast.description}
+                    photo={podcast.podcast_photo}
+                    url={'/podcasts/' + podcast.id}
+                />
+            </Grid>
             <br />
         </div>) : "";
+
+        // Array.prototype.eachSlice = function (size) {
+        //     this.arr = []
+        //     for (var i = 0, l = this.length; i < l; i += size) {
+        //         this.arr.push(this.slice(i, i + size))
+        //     }
+        //     return this.arr
+        // };
+
+        // console.log("WWWWW", searchedPodcast.eachSlice(2))
 
         if (this.state.podcasts === null) {
             return false
@@ -98,7 +115,12 @@ class Podcastindex extends React.Component {
                         <input id="search" type="text" placeholder="duration e.g. Short" onChange={(event) => { this.inputChangeHandlerDuration(event) }} />
                         <input id="search" type="text" placeholder="age e.g. Kids" onChange={(event) => { this.inputChangeHandlerAgeGroup(event) }} />
                         <hr />
-                        <Grid container item xs={12} spacing={3}>
+                        <Grid container
+                            direction="row"
+                            justify="center"
+                            alignContent="space-between"
+
+                        >
                             {searchedPodcast}
                         </Grid>
                     </Container>
