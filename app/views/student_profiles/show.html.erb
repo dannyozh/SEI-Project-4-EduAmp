@@ -5,7 +5,7 @@
   <div class="row">
     <% @requiredPodcast.each_slice(3) do |podcast| %>
       <% podcast.each do |finalpodcast| %>
-        <div class="card col-4 text-white bg-dark mb-3" style="width: 18rem;">
+        <div class="card col-4 text-white bg-dark mb-3 col-4 py-3 mx-2" style="width: 18rem;">
           <img src="<%= finalpodcast.podcast_photo%>" class="card-img-top" alt="podcast-photo">
           <div class="card-body">
             <h5 class="card-title"><%=finalpodcast.episode_name%></h5>
@@ -18,29 +18,33 @@
     <%end%>
   </div>
   <hr/>
-  <h5>Here are the people you are subscribed to</h5>
+  
+  <h5>Here are the podcasters you're subscribed to:</h5>
+  
 
   <div class="row">
     <% @requiredAuthor.each_slice(3) do |author|%>
       <% author.each do |finalauthor|%>
-        <div class="container col-4">
-          <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content="<%=finalauthor.name%>, <%=finalauthor.description%>"><img class="img-thumbnail" 
+        <div class="container col-4 py-3 mx-2">
+          <button type="button" class="btn btn-secondary" data-container="body" data-toggle="popover" data-placement="bottom" data-content=" <%=finalauthor.description%>"><img class="img-thumbnail" 
           src="<%= finalauthor.photo_url%>" 
           style="width: 200px; height:200px"
           />
           </button>
-          <br/>
-          <a href="/educator_profiles/<%=finalauthor.id%>"><%=finalauthor.name%></a>
-          <a href="/deletesubscribe/<%=finalauthor.id%>" data-method="delete">Delete subscribe</a>
-        </div>
+          <button type="button" class="btn btn-danger btn-sm text-white">
+            <a href="/deletesubscribe/<%=finalauthor.id%>" data-method="delete" class="text-white">
+              X
+            </a>
+            <br/>
+          </div>
+        <%end%>
       <%end%>
-    <%end%>
+    </div>
   </div>
-</div>
-<script>
-  console.log("HOHOHOHO")
-  $(function () {
-    $('[data-toggle="popover"]').popover()
-    console.log('popover clicked!!!!')
-  })
-</script>
+  <script>
+    console.log("HOHOHOHO")
+    $(function () {
+      $('[data-toggle="popover"]').popover()
+      console.log('popover clicked!!!!')
+    })
+  </script>
