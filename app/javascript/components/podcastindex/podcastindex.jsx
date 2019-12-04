@@ -8,6 +8,8 @@ import MediaCard from "../card/card"
 import Grid from '@material-ui/core/Grid';
 import RecipeReviewCard from "../complexcard/complexcard";
 import Paper from '@material-ui/core/Paper';
+import TextField from '@material-ui/core/TextField';
+
 
 
 
@@ -110,10 +112,15 @@ class Podcastindex extends React.Component {
             return (
                 < div >
                     <Container>
-                        <h1>Hi from podcast INDEX.jsx</h1>
-                        <input id="search" type="text" placeholder="category e.g. History" onChange={(event) => { this.inputChangeHandlerCategory(event) }} />
-                        <input id="search" type="text" placeholder="duration e.g. Short" onChange={(event) => { this.inputChangeHandlerDuration(event) }} />
-                        <input id="search" type="text" placeholder="age e.g. Kids" onChange={(event) => { this.inputChangeHandlerAgeGroup(event) }} />
+                        <TextField label="Category"
+                            margin="normal"
+                            variant="outlined" onChange={(event) => { this.inputChangeHandlerCategory(event) }} />
+                        <TextField label="Duration"
+                            margin="normal"
+                            variant="outlined" onChange={(event) => { this.inputChangeHandlerDuration(event) }} />
+                        <TextField label="Age Group"
+                            margin="normal"
+                            variant="outlined" onChange={(event) => { this.inputChangeHandlerAgeGroup(event) }} />
                         <hr />
                         <Grid container
                             direction="row"

@@ -12,6 +12,10 @@ import Typography from '@material-ui/core/Typography';
 const useStyles = makeStyles({
     card: {
         maxWidth: 345,
+        backgroundColor: '#6B93C2',
+        color: '#4E342E',
+
+
     },
     media: {
         height: 300,
@@ -24,7 +28,7 @@ export default function MediaCard(props) {
     let description = props.description.substring(0, 100);
     let trimmedDescription = description.substring(0, Math.min(description.length, description.lastIndexOf(" ")))
     return (
-        <Card className={classes.card}>
+        <Card className={classes.card} raised="true" >
             <CardActionArea>
                 <CardMedia
                     className={classes.media}
@@ -42,7 +46,7 @@ export default function MediaCard(props) {
             </CardActionArea>
             <CardActions>
 
-                <Button size="large" color="primary" href={props.url}>
+                <Button size="large" color="secondary" href={props.url}>
                     Learn More
         </Button>
             </CardActions>
