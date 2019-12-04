@@ -6,7 +6,6 @@ import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import MediaCard from "../card/card"
 import Grid from '@material-ui/core/Grid';
-import RecipeReviewCard from "../complexcard/complexcard";
 import Paper from '@material-ui/core/Paper';
 import TextField from '@material-ui/core/TextField';
 
@@ -84,6 +83,7 @@ class Podcastindex extends React.Component {
 
 
 
+
         const searchedPodcast = this.state.podcasts ? this.state.podcasts.filter(podcast => podcast.category.toLowerCase().includes(this.state.category.toLowerCase()) && podcast.duration.toLowerCase().includes(this.state.duration.toLowerCase()) && podcast.age_group.toLowerCase().includes(this.state.age_group.toLowerCase())).map(podcast => <div>
             <Grid item xs={11} >
                 <MediaCard
@@ -112,9 +112,11 @@ class Podcastindex extends React.Component {
             return (
                 < div >
                     <Container>
-                        <TextField label="Category"
+                        <TextField
+                            color="secondary"
+                            label="Category"
                             margin="normal"
-                            variant="outlined" onChange={(event) => { this.inputChangeHandlerCategory(event) }} />
+                            variant="filled" onChange={(event) => { this.inputChangeHandlerCategory(event) }} />
                         <TextField label="Duration"
                             margin="normal"
                             variant="outlined" onChange={(event) => { this.inputChangeHandlerDuration(event) }} />

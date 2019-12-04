@@ -41,7 +41,7 @@ export default function CenteredGrid(props) {
 
     return (
         <div className={classes.root}>
-            <Grid container spacing={3} justify="center" alignItems="center" justify="center" style={{ minHeight: "100vh" }}>
+            <Grid container spacing={3} justify="center" alignItems="center" style={{ minHeight: "100vh" }}>
                 <Grid item xs={6}>
                     <CardMedia
                         style={{ height: 0, paddingTop: '56.25%' }}

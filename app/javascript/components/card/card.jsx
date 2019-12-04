@@ -28,7 +28,7 @@ export default function MediaCard(props) {
     let description = props.description.substring(0, 100);
     let trimmedDescription = description.substring(0, Math.min(description.length, description.lastIndexOf(" ")))
     return (
-        <Card className={classes.card} raised="true" >
+        <Card className={classes.card} >
             <CardActionArea>
                 <CardMedia
                     className={classes.media}

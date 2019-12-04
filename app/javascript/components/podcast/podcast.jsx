@@ -8,6 +8,11 @@ import SaveIcon from '@material-ui/icons/Save';
 import Box from '@material-ui/core/Box';
 import ReactDOMServer from 'react-dom/server';
 import ImageAvatars from '../avatar/avatar';
+import Container from '@material-ui/core/Container';
+import Grid from '@material-ui/core/Grid';
+// import MediaControlCard from "../mediacard/mediacard";
+import PaperSheet from "../paper/paper"
+
 
 const csrfToken = document.querySelector('[name=csrf-token]').content
 axios.defaults.headers.common['X-CSRF-TOKEN'] = csrfToken
@@ -75,52 +80,58 @@ class Podcast extends React.Component {
         } else {
             const podcastAuthor = this.state.author.map((author, index) => {
                 return (<div>
-                    <Box>
-                        <ImageAvatars photo={author.photo_url} />
-                        <p>By: {author.name}</p>
-                        <p>Bio: {author.description}</p>
+                    <ImageAvatars photo={author.photo_url} />
+                    <h2>By: {author.name}</h2>
+                    <h6>Bio: {author.description}</h6>
 
-                    </Box>
                 </div>);
             });
             return (
                 <div>
-                    <Box>
-                        <h1>Hi from podcast.jsx</h1>
-                        {podcastAuthor}
-                        <img src={this.state.podcasts.podcast_photo} />
-                        <p>Title: {this.state.podcasts.podcast_title}</p>
-                        <p>Date: {this.state.podcasts.date}</p>
-                        <p>Episode No: {this.state.podcasts.episode_no}</p>
-                        <p>Episode Name: {this.state.podcasts.episode_name}</p>
-                        <p>Description: {this.state.podcasts.description}</p>
-                        <p>Duration: {this.state.podcasts.actual_length}</p>
-                        <audio controls preload="auto" ref="audio">
-                            <source className="main-audio" src={this.state.podcasts.url} type="audio/mpeg">
-                            </source>;
-                    </audio>
-                        <hr />
-                        <Button onClick={() => { this.saveAuthor() }}
-                            variant="contained"
-                            color="primary"
-                            size="small"
-                            className="button"
-                            id={this.state.podcastID}
-                            startIcon={<SaveIcon />}
-                        >
-                            Subscribe
-                        </Button>
-                        <Button onClick={() => { this.savePodcast() }}
-                            variant="contained"
-                            color="secondary"
-                            size="small"
-                            className="save-button"
-                            startIcon={<SaveIcon />}
-                        >
-                            Save
-                        </Button>
+                    <Container>
+                        <Grid container justify="space-around">
+                            <Grid item xs={6}>
+                                {podcastAuthor}
+                            </Grid>
+                            <Grid item xs={6}>
 
-                    </Box>
+                                <img src={this.state.podcasts.podcast_photo} />
+                                <h2>Title: {this.state.podcasts.podcast_title}</h2>
+                                <h3>Date: {this.state.podcasts.date}</h3>
+                                <h4>Episode Name: {this.state.podcasts.episode_name}</h4>
+                                <h6>Description: {this.state.podcasts.description}</h6>
+                                <br />
+                                <audio controls preload="auto" ref="audio">
+                                    <source className="main-audio" src={this.state.podcasts.url} type="audio/mpeg">
+                                    </source>;
+                            </audio>
+                                <br />
+                                <br />
+                                <Button onClick={() => { this.saveAuthor() }}
+                                    variant="contained"
+                                    color="primary"
+                                    size="small"
+                                    className="button"
+                                    id={this.state.podcastID}
+                                    startIcon={<SaveIcon />}
+                                >
+                                    Subscribe
+                        </Button>
+                                <Button onClick={() => { this.savePodcast() }}
+                                    variant="contained"
+                                    color="secondary"
+                                    size="small"
+                                    className="save-button"
+                                    startIcon={<SaveIcon />}
+                                >
+                                    Save
+                        </Button>
+                            </Grid>
+                        </Grid>
+                        <hr />
+
+
+                    </Container>
                 </div >
             );
         }
