@@ -112,18 +112,20 @@ class Podcastindex extends React.Component {
             return (
                 < div >
                     <Container>
-                        <TextField
-                            color="secondary"
-                            label="Category"
-                            margin="normal"
-                            variant="filled" onChange={(event) => { this.inputChangeHandlerCategory(event) }} />
-                        <TextField label="Duration"
-                            margin="normal"
-                            variant="outlined" onChange={(event) => { this.inputChangeHandlerDuration(event) }} />
-                        <TextField label="Age Group"
-                            margin="normal"
-                            variant="outlined" onChange={(event) => { this.inputChangeHandlerAgeGroup(event) }} />
-                        <hr />
+                        <div className="text-white">
+                            <TextField
+                                color="secondary"
+                                label="Category"
+                                margin="normal"
+                                variant="filled" onChange={(event) => { this.inputChangeHandlerCategory(event) }} />
+                            <TextField label="Duration"
+                                margin="normal"
+                                variant="outlined" onChange={(event) => { this.inputChangeHandlerDuration(event) }} />
+                            <TextField label="Age Group"
+                                margin="normal"
+                                variant="outlined" onChange={(event) => { this.inputChangeHandlerAgeGroup(event) }} />
+                            <hr />
+                        </div>
                         <Grid container
                             direction="row"
                             justify="center"
