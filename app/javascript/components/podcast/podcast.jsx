@@ -97,15 +97,24 @@ class Podcast extends React.Component {
                             <Grid item xs={6}>
                                 <div style={{ display: "block", width: "100%" }}>
                                     <div className="float-left col-md-4">
-                                        <img className="rounded" src={this.state.podcasts.podcast_photo} />
+                                        <img className="img-fluid rounded" src={this.state.podcasts.podcast_photo} />
                                     </div>
                                     <div className="float-left col-md-8">
-                                        <h2 className="col-md-11 d-block" >Title: {this.state.podcasts.podcast_title}</h2>
-                                        <h3 className="col-md-11 d-block" >Date: {this.state.podcasts.date}</h3>
-                                        <audio className="ml-3" controls preload="auto" ref="audio">
-                                            <source className="main-audio" src={this.state.podcasts.url} type="audio/mpeg">
-                                            </source>;
-                                        </audio>
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <h2 className="col-md-11 d-block" >Title: {this.state.podcasts.podcast_title}</h2>
+                                                <h3 className="col-md-11 d-block" >Date: {this.state.podcasts.date}</h3>
+
+                                            </div>
+                                        </div>
+                                        <div className="row">
+                                            <div className="col-12">
+                                                <audio className="ml-3" controls preload="auto" ref="audio">
+                                                    <source className="main-audio" src={this.state.podcasts.url} type="audio/mpeg">
+                                                    </source>;
+                                            </audio>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                                 <div className="float-left py-3 mx-2 col-md-10">
