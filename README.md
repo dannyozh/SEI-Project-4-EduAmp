@@ -32,3 +32,5 @@ rails db:migrate
 ## App functions
 
 Users can not only listen to podcasts, but add them to a "save later" if they cannot finish the podcast or simply just want to re-listen. Additionally, users are able to follow/subscribe to the podcast creators and view other interesting educational projects they have had a hand in.
+
+![image](https://user-images.githubusercontent.com/54427616/71511461-6b30fa00-28cd-11ea-9a3c-ad28944238de.png)
