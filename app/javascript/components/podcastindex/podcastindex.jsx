@@ -105,7 +105,7 @@ class Podcastindex extends React.Component {
         // };
 
         // console.log("WWWWW", searchedPodcast.eachSlice(2))
-
+        // const something = this.state.podcasts ? this.state.podcasts : "";
         if (this.state.podcasts === null) {
             return false
         } else {
